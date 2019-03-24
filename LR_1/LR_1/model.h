@@ -1,25 +1,29 @@
-#ifndef DOT_H
-#define DOT_H
+#ifndef MODEL_H
+#define MODEL_H
 
-struct dot
+struct Dot
 {
     int x;
     int y;
     int z;
 };
 
-struct edge
+struct Edge
 {
     int first;
     int second;
 };
 
-struct model
+struct Model
 {
-    dot *dots_array = nullptr;
-    edge *edges_array = nullptr;
-    int dots_count = 0;
-    int edges_count = 0;
+    Dot *dots_array;
+    Edge *edges_array;
+    int dots_count;
+    int edges_count;
 };
 
-#endif // DOT_H
+Model InitModel();
+Dot *GetDots(Model &frame_model);
+Edge *GetEdges(Model &frame_model);
+void FreeModel(Model &frame_model);
+#endif // MODEL_H
