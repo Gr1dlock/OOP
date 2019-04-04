@@ -31,8 +31,9 @@ SOURCES += \
     controller.cpp \
     model.cpp \
     actions.cpp \
-    draw.cpp \
-    main_scene.cpp
+    main_scene.cpp \
+    dot.cpp \
+    edge.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     controller.h \
     actions.h \
     main_scene.h \
-    draw.h
+    dot.h \
+    edge.h
 
 FORMS += \
         mainwindow.ui

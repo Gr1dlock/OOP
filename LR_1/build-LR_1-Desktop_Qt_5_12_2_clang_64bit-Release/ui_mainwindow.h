@@ -262,6 +262,7 @@ public:
         spinBoxDX = new QSpinBox(groupBox_2);
         spinBoxDX->setObjectName(QString::fromUtf8("spinBoxDX"));
         spinBoxDX->setFont(font);
+        spinBoxDX->setMinimum(-1000);
         spinBoxDX->setMaximum(1000);
         spinBoxDX->setSingleStep(10);
 
@@ -286,6 +287,7 @@ public:
         spinBoxDY = new QSpinBox(groupBox_2);
         spinBoxDY->setObjectName(QString::fromUtf8("spinBoxDY"));
         spinBoxDY->setFont(font);
+        spinBoxDY->setMinimum(-1000);
         spinBoxDY->setMaximum(1000);
         spinBoxDY->setSingleStep(10);
 
@@ -310,6 +312,7 @@ public:
         spinBoxDZ = new QSpinBox(groupBox_2);
         spinBoxDZ->setObjectName(QString::fromUtf8("spinBoxDZ"));
         spinBoxDZ->setFont(font);
+        spinBoxDZ->setMinimum(-1000);
         spinBoxDZ->setMaximum(1000);
         spinBoxDZ->setSingleStep(10);
 
@@ -531,6 +534,8 @@ public:
         spinBoxKX = new QDoubleSpinBox(groupBox_4);
         spinBoxKX->setObjectName(QString::fromUtf8("spinBoxKX"));
         spinBoxKX->setFont(font);
+        spinBoxKX->setMinimum(0.010000000000000);
+        spinBoxKX->setValue(1.000000000000000);
 
         horizontalLayout_19->addWidget(spinBoxKX);
 
@@ -553,6 +558,8 @@ public:
         spinBoxKY = new QDoubleSpinBox(groupBox_4);
         spinBoxKY->setObjectName(QString::fromUtf8("spinBoxKY"));
         spinBoxKY->setFont(font);
+        spinBoxKY->setMinimum(0.010000000000000);
+        spinBoxKY->setValue(1.000000000000000);
 
         horizontalLayout_20->addWidget(spinBoxKY);
 
@@ -575,6 +582,8 @@ public:
         spinBoxKZ = new QDoubleSpinBox(groupBox_4);
         spinBoxKZ->setObjectName(QString::fromUtf8("spinBoxKZ"));
         spinBoxKZ->setFont(font);
+        spinBoxKZ->setMinimum(0.010000000000000);
+        spinBoxKZ->setValue(1.000000000000000);
 
         horizontalLayout_21->addWidget(spinBoxKZ);
 

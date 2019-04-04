@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     main_scene.scene = new QGraphicsScene();
     main_scene.center_x = CENTER_X;
     main_scene.center_y = CENTER_Y;
-    QGraphicsScene *scene = GetScene(main_scene);
+    QGraphicsScene *scene = getScene(main_scene);
     ui->graphicsView->setScene(scene);
     main_scene.rect = QRect(QPoint(0,0), QPoint(CENTER_X * 2 - 5, CENTER_Y * 2 - 5));
     scene->setSceneRect(main_scene.rect);

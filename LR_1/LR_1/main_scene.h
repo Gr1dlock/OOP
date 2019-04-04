@@ -11,6 +11,6 @@ struct MainScene
 };
 
 
-QGraphicsScene *GetScene(MainScene &main_scene);
+QGraphicsScene *getScene(const MainScene &main_scene);
 
 #endif // MAIN_SCENE_H

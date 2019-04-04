@@ -1,18 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-struct Dot
-{
-    int x;
-    int y;
-    int z;
-};
-
-struct Edge
-{
-    int first;
-    int second;
-};
+#include "errors.h"
 
 struct Model
 {
@@ -22,8 +11,14 @@ struct Model
     int edges_count;
 };
 
-Model InitModel();
-Dot *GetDots(Model &frame_model);
-Edge *GetEdges(Model &frame_model);
-void FreeModel(Model &frame_model);
+Model initModel();
+Dot *getDots(const Model &frame_model);
+Edge *getEdges(const Model &frame_model);
+void freeModel(Model &frame_model);
+int allocateEdges(Edge **edges_array, const int &edges_count);
+int allocateDots(Dot **dots_array, const int &dots_count);
+int allocateModelArrays(Model &frame_model);
+void freeEdges(Edge **edges_array);
+void freeDots(Dot **dots_array);
+
 #endif // MODEL_H

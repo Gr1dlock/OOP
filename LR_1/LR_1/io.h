@@ -4,10 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "model.h"
-#include "errors.h"
 
 
-int ReadFile(const char *filename, Model &frame_model);
-int SaveFile(const char *filename, Model &frame_model);
+int readFile(Model &frame_model, const char *filename);
+int saveFile(Model &frame_model, const char *filename);
 
 #endif // IO_H

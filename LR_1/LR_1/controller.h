@@ -15,6 +15,6 @@ union CurAction
     bool clear;
 };
 
-int control(MainScene &main_scene, const CurAction& act, ActionType type);
+int control(MainScene &main_scene, const CurAction& act, const ActionType type);
 
 #endif // CONTROLLER_H

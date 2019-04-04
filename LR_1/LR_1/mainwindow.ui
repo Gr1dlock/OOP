@@ -298,6 +298,9 @@
               <pointsize>15</pointsize>
              </font>
             </property>
+            <property name="minimum">
+             <number>-1000</number>
+            </property>
             <property name="maximum">
              <number>1000</number>
             </property>
@@ -345,6 +348,9 @@
               <pointsize>15</pointsize>
              </font>
             </property>
+            <property name="minimum">
+             <number>-1000</number>
+            </property>
             <property name="maximum">
              <number>1000</number>
             </property>
@@ -391,6 +397,9 @@
              <font>
               <pointsize>15</pointsize>
              </font>
+            </property>
+            <property name="minimum">
+             <number>-1000</number>
             </property>
             <property name="maximum">
              <number>1000</number>
@@ -836,6 +845,12 @@
               <pointsize>15</pointsize>
              </font>
             </property>
+            <property name="minimum">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>1.000000000000000</double>
+            </property>
            </widget>
           </item>
          </layout>
@@ -877,6 +892,12 @@
               <pointsize>15</pointsize>
              </font>
             </property>
+            <property name="minimum">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>1.000000000000000</double>
+            </property>
            </widget>
           </item>
          </layout>
@@ -917,6 +938,12 @@
              <font>
               <pointsize>15</pointsize>
              </font>
+            </property>
+            <property name="minimum">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>1.000000000000000</double>
             </property>
            </widget>
           </item>

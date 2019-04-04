@@ -3,30 +3,33 @@
 
 int control(MainScene &main_scene, const CurAction &act, ActionType type)
 {
-    static Model frame_model = InitModel();
+    static Model frame_model = initModel();
     int rc = OK;
     switch(type)
     {
     case OPEN:
-        rc = ReadFile(act.filename, frame_model);
+        rc = readFile(frame_model, act.filename);
         break;
     case SAVE:
-        rc = SaveFile(act.filename, frame_model);
+        rc = saveFile(frame_model, act.filename);
         break;
     case ROTATE:
-        rc = RotateModel(act.rotate, frame_model);
+        rc = rotateModel(frame_model, act.rotate);
         break;
     case TRANSFER:
-        rc = TransferModel(act.transfer, frame_model);
+        rc = transferModel(frame_model, act.transfer);
         break;
     case SCALE:
-        rc = ScaleModel(act.scale, frame_model);
+        rc = scaleModel(frame_model, act.scale);
         break;
     case DRAW:
-        rc = DrawModel(main_scene, frame_model);
+        rc = drawModel(main_scene, frame_model);
         break;
     case CLEAR:
-        rc = ClearModel(main_scene, frame_model);
+        rc = clearScene(main_scene, frame_model);
+        break;
+    default:
+        rc = ERR_PARAM;
         break;
     }
     return rc;
