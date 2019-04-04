@@ -1,8 +1,6 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
-#include "actions.h"
-#include "io.h"
-#include "draw.h"
+#include "model.h"
 
 enum ActionType { TRANSFER, ROTATE, SCALE, SAVE, OPEN, DRAW, CLEAR };
 
@@ -11,7 +9,7 @@ union CurAction
     Rotate rotate;
     Scale scale;
     Transfer transfer;
-    const char *filename;
+    const char *stream_name;
     bool clear;
 };
 

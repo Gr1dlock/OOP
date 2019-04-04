@@ -54,20 +54,24 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../LR_1/main.cpp \
 		../LR_1/mainwindow.cpp \
-		../LR_1/io.cpp \
 		../LR_1/controller.cpp \
 		../LR_1/model.cpp \
 		../LR_1/actions.cpp \
-		../LR_1/draw.cpp \
-		../LR_1/main_scene.cpp moc_mainwindow.cpp
+		../LR_1/main_scene.cpp \
+		../LR_1/dot.cpp \
+		../LR_1/edge.cpp \
+		../LR_1/stream.cpp \
+		../LR_1/draw.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
-		io.o \
 		controller.o \
 		model.o \
 		actions.o \
-		draw.o \
 		main_scene.o \
+		dot.o \
+		edge.o \
+		stream.o \
+		draw.o \
 		moc_mainwindow.o
 DIST          = /Applications/Qt/5.12.2/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.12.2/clang_64/mkspecs/qdevice.pri \
@@ -245,20 +249,24 @@ DIST          = /Applications/Qt/5.12.2/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.12.2/clang_64/mkspecs/features/yacc.prf \
 		/Applications/Qt/5.12.2/clang_64/mkspecs/features/lex.prf \
 		../LR_1/LR_1.pro ../LR_1/mainwindow.h \
-		../LR_1/io.h \
 		../LR_1/errors.h \
 		../LR_1/model.h \
 		../LR_1/controller.h \
 		../LR_1/actions.h \
 		../LR_1/main_scene.h \
+		../LR_1/dot.h \
+		../LR_1/edge.h \
+		../LR_1/stream.h \
 		../LR_1/draw.h ../LR_1/main.cpp \
 		../LR_1/mainwindow.cpp \
-		../LR_1/io.cpp \
 		../LR_1/controller.cpp \
 		../LR_1/model.cpp \
 		../LR_1/actions.cpp \
-		../LR_1/draw.cpp \
-		../LR_1/main_scene.cpp
+		../LR_1/main_scene.cpp \
+		../LR_1/dot.cpp \
+		../LR_1/edge.cpp \
+		../LR_1/stream.cpp \
+		../LR_1/draw.cpp
 QMAKE_TARGET  = LR_1
 DESTDIR       = 
 TARGET        = LR_1.app/Contents/MacOS/LR_1
@@ -670,8 +678,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Applications/Qt/5.12.2/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../LR_1/mainwindow.h ../LR_1/io.h ../LR_1/errors.h ../LR_1/model.h ../LR_1/controller.h ../LR_1/actions.h ../LR_1/main_scene.h ../LR_1/draw.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../LR_1/main.cpp ../LR_1/mainwindow.cpp ../LR_1/io.cpp ../LR_1/controller.cpp ../LR_1/model.cpp ../LR_1/actions.cpp ../LR_1/draw.cpp ../LR_1/main_scene.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../LR_1/mainwindow.h ../LR_1/errors.h ../LR_1/model.h ../LR_1/controller.h ../LR_1/actions.h ../LR_1/main_scene.h ../LR_1/dot.h ../LR_1/edge.h ../LR_1/stream.h ../LR_1/draw.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../LR_1/main.cpp ../LR_1/mainwindow.cpp ../LR_1/controller.cpp ../LR_1/model.cpp ../LR_1/actions.cpp ../LR_1/main_scene.cpp ../LR_1/dot.cpp ../LR_1/edge.cpp ../LR_1/stream.cpp ../LR_1/draw.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../LR_1/mainwindow.ui $(DISTDIR)/
 
 
@@ -1003,10 +1011,12 @@ moc_mainwindow.cpp: ../LR_1/mainwindow.h \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../LR_1/controller.h \
-		../LR_1/actions.h \
 		../LR_1/model.h \
+		../LR_1/edge.h \
+		../LR_1/dot.h \
+		../LR_1/stream.h \
 		../LR_1/errors.h \
-		../LR_1/io.h \
+		../LR_1/actions.h \
 		../LR_1/draw.h \
 		../LR_1/main_scene.h \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -1326,10 +1336,12 @@ main.o: ../LR_1/main.cpp ../LR_1/mainwindow.h \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../LR_1/controller.h \
-		../LR_1/actions.h \
 		../LR_1/model.h \
+		../LR_1/edge.h \
+		../LR_1/dot.h \
+		../LR_1/stream.h \
 		../LR_1/errors.h \
-		../LR_1/io.h \
+		../LR_1/actions.h \
 		../LR_1/draw.h \
 		../LR_1/main_scene.h \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -1626,10 +1638,12 @@ mainwindow.o: ../LR_1/mainwindow.cpp ../LR_1/mainwindow.h \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
 		../LR_1/controller.h \
-		../LR_1/actions.h \
 		../LR_1/model.h \
+		../LR_1/edge.h \
+		../LR_1/dot.h \
+		../LR_1/stream.h \
 		../LR_1/errors.h \
-		../LR_1/io.h \
+		../LR_1/actions.h \
 		../LR_1/draw.h \
 		../LR_1/main_scene.h \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -1637,42 +1651,69 @@ mainwindow.o: ../LR_1/mainwindow.cpp ../LR_1/mainwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../LR_1/mainwindow.cpp
 
-io.o: ../LR_1/io.cpp ../LR_1/io.h \
-		../LR_1/model.h \
-		../LR_1/errors.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o io.o ../LR_1/io.cpp
-
 controller.o: ../LR_1/controller.cpp ../LR_1/controller.h \
-		../LR_1/actions.h \
 		../LR_1/model.h \
+		../LR_1/edge.h \
+		../LR_1/dot.h \
+		../LR_1/stream.h \
 		../LR_1/errors.h \
-		../LR_1/io.h \
+		../LR_1/actions.h \
 		../LR_1/draw.h \
 		../LR_1/main_scene.h \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o controller.o ../LR_1/controller.cpp
 
-model.o: ../LR_1/model.cpp ../LR_1/model.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o model.o ../LR_1/model.cpp
-
-actions.o: ../LR_1/actions.cpp ../LR_1/actions.h \
-		../LR_1/model.h \
-		../LR_1/errors.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o actions.o ../LR_1/actions.cpp
-
-draw.o: ../LR_1/draw.cpp ../LR_1/draw.h \
-		../LR_1/model.h \
+model.o: ../LR_1/model.cpp ../LR_1/model.h \
+		../LR_1/edge.h \
+		../LR_1/dot.h \
+		../LR_1/stream.h \
+		../LR_1/errors.h \
+		../LR_1/actions.h \
+		../LR_1/draw.h \
 		../LR_1/main_scene.h \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
-		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
-		../LR_1/errors.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o draw.o ../LR_1/draw.cpp
+		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o model.o ../LR_1/model.cpp
+
+actions.o: ../LR_1/actions.cpp ../LR_1/actions.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o actions.o ../LR_1/actions.cpp
 
 main_scene.o: ../LR_1/main_scene.cpp ../LR_1/main_scene.h \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
 		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main_scene.o ../LR_1/main_scene.cpp
+
+dot.o: ../LR_1/dot.cpp ../LR_1/dot.h \
+		../LR_1/stream.h \
+		../LR_1/errors.h \
+		../LR_1/actions.h \
+		../LR_1/draw.h \
+		../LR_1/main_scene.h \
+		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dot.o ../LR_1/dot.cpp
+
+edge.o: ../LR_1/edge.cpp ../LR_1/edge.h \
+		../LR_1/dot.h \
+		../LR_1/stream.h \
+		../LR_1/errors.h \
+		../LR_1/actions.h \
+		../LR_1/draw.h \
+		../LR_1/main_scene.h \
+		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o edge.o ../LR_1/edge.cpp
+
+stream.o: ../LR_1/stream.cpp ../LR_1/stream.h \
+		../LR_1/errors.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o stream.o ../LR_1/stream.cpp
+
+draw.o: ../LR_1/draw.cpp ../LR_1/draw.h \
+		../LR_1/main_scene.h \
+		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/Applications/Qt/5.12.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o draw.o ../LR_1/draw.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

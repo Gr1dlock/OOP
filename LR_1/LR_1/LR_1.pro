@@ -27,24 +27,26 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    io.cpp \
     controller.cpp \
     model.cpp \
     actions.cpp \
     main_scene.cpp \
     dot.cpp \
-    edge.cpp
+    edge.cpp \
+    stream.cpp \
+    draw.cpp
 
 HEADERS += \
         mainwindow.h \
-    io.h \
     errors.h \
     model.h \
     controller.h \
     actions.h \
     main_scene.h \
     dot.h \
-    edge.h
+    edge.h \
+    stream.h \
+    draw.h
 
 FORMS += \
         mainwindow.ui

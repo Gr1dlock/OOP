@@ -9,70 +9,79 @@ void freeDots(Dot **dots_array)
 int allocateDots(Dot **dots_array, const int &dots_count)
 {
     int rc = OK;
-    if (dots_count > 0)
+    if (dots_count <= 0) return ERR_IO;
+    *dots_array =  new Dot[dots_count];
+    if (!(*dots_array))
     {
-        *dots_array =  new Dot[dots_count];
-        if (!(*dots_array))
-            rc = ERR_MEM;
+        rc = ERR_MEM;
     }
-    else
-        rc = ERR_IO;
     return rc;
 }
 
-int readDots(Dot *dots_array, FILE *file, const int& dots_count)
+int readDots(Dot *dots_array, STREAM *stream, const int& dots_count)
 {
     int rc = OK;
-    for (int i = 0; i < dots_count; i++)
+    int i = 0;
+    while (i < dots_count && rc == OK)
     {
-        if (fscanf(file, "%d %d %d", &(dots_array[i].x),
+        if (fscanf(stream, "%lf %lf %lf", &(dots_array[i].x),
                    &(dots_array[i].y),
                    &(dots_array[i].z)) != 3)
             rc = ERR_IO;
+        i++;
     }
     return rc;
 }
 
-void printDots(FILE *file, Dot *dots_array, const int &dots_count)
+void saveDots(STREAM *stream, Dot *dots_array, const int &dots_count)
 {
     for (int i = 0; i < dots_count; i++)
-        fprintf(file, "%d %d %d\n", dots_array[i].x,
+        fprintf(stream, "%lf %lf %lf\n", dots_array[i].x,
                 dots_array[i].y,
                 dots_array[i].z);
 }
 
-void drawDot(MainScene &main_scene, const Dot &point)
+void drawDots(MainScene &main_scene, Dot *dots_array, const int &dots_count)
 {
-    QGraphicsScene *scene = getScene(main_scene);
-    QBrush brush(Qt::white, Qt::SolidPattern);
-    QPen pen(Qt::white);
-    scene->addEllipse(QRect(QPoint(point.x + main_scene.center_x -3,
-                                      main_scene.center_y - point.y -3),
-                            QPoint(point.x + main_scene.center_x + 3,
-                                      main_scene.center_y - point.y + 3)),
-                      pen, brush);
+    for (int i = 0; i < dots_count; i++)
+        drawPeak(main_scene, dots_array[i].x, dots_array[i].y);
 }
 
-void transferDot(Dot &point, const Transfer transfer)
+void transferDots(Dot *dots_array, const int &dots_count, const Transfer transfer)
 {
-    point.x += transfer.dx;
-    point.y += transfer.dy;
-    point.z += transfer.dz;
+    if (abs(transfer.dx) > EPS)
+        for (int i = 0; i < dots_count; i++)
+            transferX(dots_array[i].x, transfer.dx);
+    if (abs(transfer.dy) > EPS)
+        for (int i = 0; i < dots_count; i++)
+            transferY(dots_array[i].y, transfer.dy);
+    if (abs(transfer.dz) > EPS)
+        for (int i = 0; i < dots_count; i++)
+            transferZ(dots_array[i].z, transfer.dz);
 }
 
-void scaleDot(Dot &point, const Scale scale)
+void scaleDots(Dot *dots_array, const int &dots_count, const Scale scale)
 {
-    point.x *= scale.kx;
-    point.y *= scale.ky;
-    point.z *= scale.kz;
+    if (abs(scale.kx) > EPS)
+        for (int i = 0; i < dots_count; i++)
+            scaleX(dots_array[i].x, scale.kx);
+    if (abs(scale.ky) > EPS)
+        for (int i = 0; i < dots_count; i++)
+            scaleY(dots_array[i].y, scale.ky);
+    if (abs(scale.kz) > EPS)
+        for (int i = 0; i < dots_count; i++)
+            scaleZ(dots_array[i].z, scale.kz);
 }
 
-void rotateDot(Dot &point, const Rotate rotate)
+void rotateDots(Dot *dots_array, const int &dots_count, const Rotate rotate)
 {
     if (abs(rotate.angle_x) > EPS)
-        rotateX(point.y, point.z, rotate.angle_x);
+        for (int i = 0; i < dots_count; i++)
+            rotateX(dots_array[i].y, dots_array[i].z, rotate.angle_x);
     if (abs(rotate.angle_y) > EPS)
-        rotateY(point.x, point.z, rotate.angle_y);
+        for (int i = 0; i < dots_count; i++)
+            rotateY(dots_array[i].x, dots_array[i].z, rotate.angle_y);
     if (abs(rotate.angle_z) > EPS)
-        rotateZ(point.x, point.y, rotate.angle_z);
+        for (int i = 0; i < dots_count; i++)
+            rotateZ(dots_array[i].x, dots_array[i].y, rotate.angle_z);
 }

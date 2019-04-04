@@ -1,7 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "errors.h"
+#include "edge.h"
 
 struct Model
 {
@@ -12,13 +12,12 @@ struct Model
 };
 
 Model initModel();
-Dot *getDots(const Model &frame_model);
-Edge *getEdges(const Model &frame_model);
-void freeModel(Model &frame_model);
-int allocateEdges(Edge **edges_array, const int &edges_count);
-int allocateDots(Dot **dots_array, const int &dots_count);
-int allocateModelArrays(Model &frame_model);
-void freeEdges(Edge **edges_array);
-void freeDots(Dot **dots_array);
+int clearModel(Model &frame_model);
+int readModel(Model &frame_model, const char *stream_name);
+int saveModel(Model &frame_model, const char *stream_name);
+int rotateModel(Model &frame_model, const Rotate rotate);
+int transferModel(Model &frame_model, const Transfer transfer);
+int scaleModel(Model &frame_model, const Scale scale);
+int drawModel(MainScene &main_scene, Model &frame_model);
 
 #endif // MODEL_H

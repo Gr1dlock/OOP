@@ -29,7 +29,7 @@ void MainWindow::on_openButton_clicked()
     QByteArray tmp_array = tmp_string.toLatin1();
     const char *filename = tmp_array.data();
     CurAction act;
-    act.filename = filename;
+    act.stream_name = filename;
     int rc = control(main_scene, act, OPEN);
     if (rc == OK)
     {
@@ -55,7 +55,7 @@ void MainWindow::on_saveButton_clicked()
     QByteArray tmp_array = tmp_string.toLatin1();
     const char *filename = tmp_array.data();
     CurAction act;
-    act.filename = filename;
+    act.stream_name = filename;
     int rc = control(main_scene, act, SAVE);
     if (rc == ERR_FILE)
     {
@@ -68,6 +68,8 @@ void MainWindow::on_cleanButton_clicked()
     CurAction act;
     act.clear = true;
     int rc = control(main_scene, act, CLEAR);
+    QGraphicsScene *scene = getScene(main_scene);
+    scene->clear();
     if (rc == ERR_EMPTY)
     {
         QMessageBox::warning(this, "Предупреждение", "Модель уже пуста");
@@ -76,11 +78,11 @@ void MainWindow::on_cleanButton_clicked()
 
 void MainWindow::on_transferButton_clicked()
 {
-    int dx, dy, dz;
+    double dx, dy, dz;
     int rc = OK;
-    dx = ui->spinBoxDX->value();
-    dy = ui->spinBoxDY->value();
-    dz = ui->spinBoxDZ->value();
+    dx = ui->doubleSpinBoxDX->value();
+    dy = ui->doubleSpinBoxDY->value();
+    dz = ui->doubleSpinBoxDZ->value();
     CurAction act;
     act.transfer = {dx, dy, dz};
     rc = control(main_scene, act, TRANSFER);

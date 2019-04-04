@@ -20,7 +20,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
@@ -60,15 +59,15 @@ public:
     QSpacerItem *horizontalSpacer_5;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_2;
-    QSpinBox *spinBoxDX;
+    QDoubleSpinBox *doubleSpinBoxDX;
     QSpacerItem *horizontalSpacer_6;
     QHBoxLayout *horizontalLayout_7;
     QLabel *label_5;
-    QSpinBox *spinBoxDY;
+    QDoubleSpinBox *doubleSpinBoxDY;
     QSpacerItem *horizontalSpacer_7;
     QHBoxLayout *horizontalLayout_8;
     QLabel *label_6;
-    QSpinBox *spinBoxDZ;
+    QDoubleSpinBox *doubleSpinBoxDZ;
     QSpacerItem *horizontalSpacer_8;
     QHBoxLayout *horizontalLayout_9;
     QSpacerItem *horizontalSpacer_10;
@@ -259,14 +258,15 @@ public:
 
         horizontalLayout_4->addWidget(label_2);
 
-        spinBoxDX = new QSpinBox(groupBox_2);
-        spinBoxDX->setObjectName(QString::fromUtf8("spinBoxDX"));
-        spinBoxDX->setFont(font);
-        spinBoxDX->setMinimum(-1000);
-        spinBoxDX->setMaximum(1000);
-        spinBoxDX->setSingleStep(10);
+        doubleSpinBoxDX = new QDoubleSpinBox(groupBox_2);
+        doubleSpinBoxDX->setObjectName(QString::fromUtf8("doubleSpinBoxDX"));
+        doubleSpinBoxDX->setFont(font);
+        doubleSpinBoxDX->setDecimals(0);
+        doubleSpinBoxDX->setMinimum(-1000.000000000000000);
+        doubleSpinBoxDX->setMaximum(1000.000000000000000);
+        doubleSpinBoxDX->setSingleStep(10.000000000000000);
 
-        horizontalLayout_4->addWidget(spinBoxDX);
+        horizontalLayout_4->addWidget(doubleSpinBoxDX);
 
 
         horizontalLayout_10->addLayout(horizontalLayout_4);
@@ -284,14 +284,15 @@ public:
 
         horizontalLayout_7->addWidget(label_5);
 
-        spinBoxDY = new QSpinBox(groupBox_2);
-        spinBoxDY->setObjectName(QString::fromUtf8("spinBoxDY"));
-        spinBoxDY->setFont(font);
-        spinBoxDY->setMinimum(-1000);
-        spinBoxDY->setMaximum(1000);
-        spinBoxDY->setSingleStep(10);
+        doubleSpinBoxDY = new QDoubleSpinBox(groupBox_2);
+        doubleSpinBoxDY->setObjectName(QString::fromUtf8("doubleSpinBoxDY"));
+        doubleSpinBoxDY->setFont(font);
+        doubleSpinBoxDY->setDecimals(0);
+        doubleSpinBoxDY->setMinimum(-1000.000000000000000);
+        doubleSpinBoxDY->setMaximum(1000.000000000000000);
+        doubleSpinBoxDY->setSingleStep(10.000000000000000);
 
-        horizontalLayout_7->addWidget(spinBoxDY);
+        horizontalLayout_7->addWidget(doubleSpinBoxDY);
 
 
         horizontalLayout_10->addLayout(horizontalLayout_7);
@@ -309,14 +310,15 @@ public:
 
         horizontalLayout_8->addWidget(label_6);
 
-        spinBoxDZ = new QSpinBox(groupBox_2);
-        spinBoxDZ->setObjectName(QString::fromUtf8("spinBoxDZ"));
-        spinBoxDZ->setFont(font);
-        spinBoxDZ->setMinimum(-1000);
-        spinBoxDZ->setMaximum(1000);
-        spinBoxDZ->setSingleStep(10);
+        doubleSpinBoxDZ = new QDoubleSpinBox(groupBox_2);
+        doubleSpinBoxDZ->setObjectName(QString::fromUtf8("doubleSpinBoxDZ"));
+        doubleSpinBoxDZ->setFont(font);
+        doubleSpinBoxDZ->setDecimals(0);
+        doubleSpinBoxDZ->setMinimum(-1000.000000000000000);
+        doubleSpinBoxDZ->setMaximum(1000.000000000000000);
+        doubleSpinBoxDZ->setSingleStep(10.000000000000000);
 
-        horizontalLayout_8->addWidget(spinBoxDZ);
+        horizontalLayout_8->addWidget(doubleSpinBoxDZ);
 
 
         horizontalLayout_10->addLayout(horizontalLayout_8);

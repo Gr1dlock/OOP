@@ -292,20 +292,23 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBoxDX">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxDX">
             <property name="font">
              <font>
               <pointsize>15</pointsize>
              </font>
             </property>
+            <property name="decimals">
+             <number>0</number>
+            </property>
             <property name="minimum">
-             <number>-1000</number>
+             <double>-1000.000000000000000</double>
             </property>
             <property name="maximum">
-             <number>1000</number>
+             <double>1000.000000000000000</double>
             </property>
             <property name="singleStep">
-             <number>10</number>
+             <double>10.000000000000000</double>
             </property>
            </widget>
           </item>
@@ -342,20 +345,23 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBoxDY">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxDY">
             <property name="font">
              <font>
               <pointsize>15</pointsize>
              </font>
             </property>
+            <property name="decimals">
+             <number>0</number>
+            </property>
             <property name="minimum">
-             <number>-1000</number>
+             <double>-1000.000000000000000</double>
             </property>
             <property name="maximum">
-             <number>1000</number>
+             <double>1000.000000000000000</double>
             </property>
             <property name="singleStep">
-             <number>10</number>
+             <double>10.000000000000000</double>
             </property>
            </widget>
           </item>
@@ -392,20 +398,23 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBoxDZ">
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxDZ">
             <property name="font">
              <font>
               <pointsize>15</pointsize>
              </font>
             </property>
+            <property name="decimals">
+             <number>0</number>
+            </property>
             <property name="minimum">
-             <number>-1000</number>
+             <double>-1000.000000000000000</double>
             </property>
             <property name="maximum">
-             <number>1000</number>
+             <double>1000.000000000000000</double>
             </property>
             <property name="singleStep">
-             <number>10</number>
+             <double>10.000000000000000</double>
             </property>
            </widget>
           </item>

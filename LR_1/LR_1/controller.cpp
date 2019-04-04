@@ -8,10 +8,10 @@ int control(MainScene &main_scene, const CurAction &act, ActionType type)
     switch(type)
     {
     case OPEN:
-        rc = readFile(frame_model, act.filename);
+        rc = readModel(frame_model, act.stream_name);
         break;
     case SAVE:
-        rc = saveFile(frame_model, act.filename);
+        rc = saveModel(frame_model, act.stream_name);
         break;
     case ROTATE:
         rc = rotateModel(frame_model, act.rotate);
@@ -26,7 +26,7 @@ int control(MainScene &main_scene, const CurAction &act, ActionType type)
         rc = drawModel(main_scene, frame_model);
         break;
     case CLEAR:
-        rc = clearScene(main_scene, frame_model);
+        rc = clearModel(frame_model);
         break;
     default:
         rc = ERR_PARAM;
