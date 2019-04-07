@@ -21,14 +21,13 @@ int allocateDots(Dot **dots_array, const int &dots_count)
 int readDots(Dot *dots_array, STREAM *stream, const int& dots_count)
 {
     int rc = OK;
-    int i = 0;
-    while (i < dots_count && rc == OK)
+
+    for (int i = 0; i < dots_count && rc == OK; i++)
     {
         if (fscanf(stream, "%lf %lf %lf", &(dots_array[i].x),
                    &(dots_array[i].y),
                    &(dots_array[i].z)) != 3)
             rc = ERR_IO;
-        i++;
     }
     return rc;
 }

@@ -23,16 +23,21 @@ void saveEdges(STREAM *stream, Edge *edges_array, const int &edges_count)
                 edges_array[i].second);
 }
 
+int readEdge(Edge &edge, STREAM *stream)
+{
+    int rc = OK;
+    if (fscanf(stream, "%d %d", &(edge.first),
+                       &(edge.second)) != 2)
+        rc = ERR_IO;
+    return rc;
+}
+
 int readEdges(Edge *edges_array, STREAM *stream, const int& edges_count)
 {
     int rc = OK;
-    int i = 0;
-    while (i < edges_count && rc == OK)
+    for (int i = 0; i < edges_count && rc == OK; i++)
     {
-        if (fscanf(stream, "%d %d", &(edges_array[i].first),
-                   &(edges_array[i].second)) != 2)
-            rc = ERR_IO;
-        i++;
+        rc = readEdge(edges_array[i], stream);
     }
     return rc;
 }
@@ -40,8 +45,7 @@ int readEdges(Edge *edges_array, STREAM *stream, const int& edges_count)
 int checkEdges(Edge *edges_array, const int& edges_count, const int &dots_count)
 {
     int rc = OK;
-    int i = 0;
-    while (i < edges_count && rc == OK)
+    for (int i = 0; i < edges_count && rc == OK; i++)
     {
         if (edges_array[i].first > dots_count - 1 ||
                 edges_array[i].first < 0 ||
@@ -50,7 +54,6 @@ int checkEdges(Edge *edges_array, const int& edges_count, const int &dots_count)
                 edges_array[i].first == edges_array[i].second)
 
             rc = ERR_IO;
-        i++;
     }
     return rc;
 }

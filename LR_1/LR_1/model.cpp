@@ -55,15 +55,15 @@ int fillModel(Model &frame_model, STREAM *stream)
 int readCopyModel(Model &frame_model, STREAM *stream)
 {
     int rc = readModelSize(frame_model.dots_count, frame_model.edges_count, stream);
+
+    if (rc != OK) return rc;
+
+    rc = allocateModelArrays(frame_model);
     if (rc == OK)
     {
-        rc = allocateModelArrays(frame_model);
-        if (rc == OK)
-        {
-            rc = fillModel(frame_model, stream);
-            if (rc != OK)
-                clearModel(frame_model);
-        }
+        rc = fillModel(frame_model, stream);
+        if (rc != OK)
+            clearModel(frame_model);
     }
     return rc;
 }
@@ -77,12 +77,12 @@ int readModel(Model &frame_model, const char *stream_name)
     {
         Model tmp_model = initModel();
         rc = readCopyModel(tmp_model, stream);
+        closeStream(&stream);
         if (rc == OK)
         {
             clearModel(frame_model);
             frame_model = tmp_model;
         }
-        closeStream(&stream);
     }
     return rc;
 }
