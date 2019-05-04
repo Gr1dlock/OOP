@@ -9,17 +9,9 @@
 
 namespace MathVectorSpace
 {
-
-		BaseVector::BaseVector() : length(0) {}
-
-
-		BaseVector::BaseVector(size_t init_length) : length(init_length) {}
-
-
-		BaseVector::~BaseVector() { length = 0; }
-    
-        
-
+    BaseVector::BaseVector() : length(0) {}
+    BaseVector::BaseVector(size_t init_length) : length(init_length) {}
+    BaseVector::~BaseVector() { length = 0; }
 }
 
 #endif // LR_2_BASEVECTOR_IMPL_H

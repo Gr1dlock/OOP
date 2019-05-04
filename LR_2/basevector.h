@@ -27,6 +27,5 @@ namespace MathVectorSpace
 
 }
 
-#include "basevector_impl.h"
 
 #endif //LR_2_BASEVECTOR_H

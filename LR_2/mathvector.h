@@ -5,11 +5,11 @@
 #ifndef LR_2_MATHVECTOR_H
 #define LR_2_MATHVECTOR_H
 
-
-#include "basevector.h"
+#include <memory>
+#include "basevector_impl.h"
 #include "exceptions.h"
-#include "vectoriterator.h"
-#include "constvectoriterator.h"
+#include "vectoriterator_impl.h"
+#include "constvectoriterator_impl.h"
 
 namespace MathVectorSpace
 {
@@ -85,10 +85,9 @@ namespace MathVectorSpace
 		ConstVectorIterator<T> end() const;
 
 	private:
-		T *data;
+        std::shared_ptr<T> data;
 	};
 }
 
-#include "mathvector_impl.h"
 
 #endif //LR_2_MATHVECTOR_H

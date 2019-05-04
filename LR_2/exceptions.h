@@ -6,6 +6,8 @@
 #define LR_2_EXCEPTIONS_H
 
 #include <exception>
+#include <string>
+#include <ctime>
 
 class BaseException : public std::exception
 {
@@ -17,7 +19,7 @@ public:
 		time = get_time();
 	}
 
-	const char *what() const noexcept override { return get_message(); }
+    virtual const char *what() const noexcept override { return get_message(); }
 
 protected:
 	std::string place;
@@ -25,8 +27,10 @@ protected:
 
 	std::string get_time() const
 	{
-		time_t now = std::time(nullptr);
-		return asctime(std::localtime(&now));
+        std::time_t now = std::time(nullptr);
+        std::string string_time = asctime(std::localtime(&now));
+        string_time.pop_back();
+        return string_time;
 	}
 
 	virtual const char * get_message() const = 0;
@@ -36,12 +40,12 @@ protected:
 class MemoryError : public BaseException
 {
 public:
-	explicit MemoryError(const std::string &plc = "") : BaseException(plc) {};
+    explicit MemoryError(const std::string &plc = "") : BaseException(plc) {}
 	const char * get_message() const override
 	{
-		std::string msg = "Memory allocation error occurred";
+        std::string msg = time + " Memory allocation error occurred";
 		if (!place.empty()) msg += " in " + place;
-		msg += " at " + time;
+        msg += "\n";
 		return msg.c_str();
 	}
 };
@@ -52,10 +56,10 @@ public:
 	explicit OutOfRangeError(const std::string &plc = "") : BaseException(plc) {};
 	const char * get_message() const override
 	{
-		std::string msg = "Index is out of range";
+        std::string msg = time + " Index is out of range";
 		if (!place.empty()) msg += " in " + place;
-		msg += " at " + time;
-		return msg.c_str();
+        msg += "\n";
+        return msg.c_str();
 	}
 };
 
@@ -65,10 +69,10 @@ public:
 	explicit InvalidSizeError(const std::string &plc = "") : BaseException(plc) {};
 	const char * get_message() const override
 	{
-		std::string msg = "Size of the vector is not valid";
+        std::string msg = time + " Size of the vector is not valid";
 		if (!place.empty()) msg += " in " + place;
-		msg += " at " + time;
-		return msg.c_str();
+        msg += "\n";
+        return msg.c_str();
 	}
 };
 

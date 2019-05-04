@@ -10,33 +10,41 @@
 namespace MathVectorSpace
 {
 	template<typename T>
-	VectorIterator<T>::VectorIterator(const VectorIterator<T> &iterator): BaseIterator<T>(iterator.ptr) {}
+	VectorIterator<T>::VectorIterator(const VectorIterator<T> &iterator): BaseIterator<T>(iterator) {}
 
 	template<typename T>
-	VectorIterator<T>::VectorIterator(T *p): BaseIterator<T>(p) {}
+	VectorIterator<T>::VectorIterator(std::shared_ptr<T> p): BaseIterator<T>(p) {}
 
 	template<typename T>
 	T &VectorIterator<T>::operator * ()
 	{
-		return *(this->ptr);
+	    std::shared_ptr<T> tmp_ptr = this->ptr.lock();
+	    T *tmp_pointer = tmp_ptr.get();
+		return *tmp_pointer;
 	}
 
 	template<typename T>
 	const T &VectorIterator<T>::operator * () const
 	{
-		return *(this->ptr);
+        std::shared_ptr<T> tmp_ptr = this->ptr.lock();
+        T *tmp_pointer = tmp_ptr.get();
+        return *tmp_pointer;
 	}
 
 	template<typename T>
 	T *VectorIterator<T>::operator -> ()
 	{
-		return this->ptr;
+        std::shared_ptr<T> tmp_ptr = this->ptr.lock();
+        T *tmp_pointer = tmp_ptr.get();
+        return tmp_pointer;
 	}
 
 	template<typename T>
 	const T *VectorIterator<T>::operator -> () const
 	{
-		return this->ptr;
+        std::shared_ptr<T> tmp_ptr = this->ptr.lock();
+        T *tmp_pointer = tmp_ptr.get();
+        return tmp_pointer;
 	}
 }
 

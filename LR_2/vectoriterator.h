@@ -5,7 +5,7 @@
 #ifndef LR_2_VECTORITERATOR_H
 #define LR_2_VECTORITERATOR_H
 
-#include "baseiterator.h"
+#include "baseiterator_impl.h"
 
 namespace MathVectorSpace
 {
@@ -15,16 +15,15 @@ namespace MathVectorSpace
 
 	public:
 		VectorIterator(const VectorIterator<T> &iterator);
-		VectorIterator(T *p);
+		VectorIterator(std::shared_ptr<T> p);
 
-		T &operator * ();
+        std::shared_ptr<T> operator * ();
 		const T &operator * () const;
 
-		T *operator -> ();
+        std::shared_ptr<T>  operator -> ();
 		const T *operator -> () const;
 	};
 }
 
-#include "vectoriterator_impl.h"
 
 #endif //LR_2_VECTORITERATOR_H

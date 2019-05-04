@@ -20,10 +20,10 @@ namespace MathVectorSpace
 	{
 		try
 		{
-			data = new T[length];
-			memcpy(data, ar, length * sizeof(T));
+            data = std::shared_ptr<T>(new T[length], std::default_delete());
+            if (ar) memcpy(data.get(), ar, length * sizeof(T));
 		}
-		catch (std::bad_alloc &exception)
+        catch (std::bad_alloc)
 		{
 			throw MemoryError("consturctor(length, array)");
 		}
@@ -34,11 +34,11 @@ namespace MathVectorSpace
 	{
 		try
 		{
-			data = new T[length];
+            data = std::shared_ptr<T>(new T[length]);
 			for (size_t i = 0; i < length; i++)
-				data[i] = value;
+                data.get()[i] = value;
 		}
-		catch (std::bad_alloc &exception)
+        catch (std::bad_alloc)
 		{
 			throw MemoryError("constructor(length, value)");
 		}
@@ -49,10 +49,10 @@ namespace MathVectorSpace
 	{
 		try
 		{
-			data = new T[length];
-			memcpy(data, other.data, length * sizeof(T));
+            data = std::shared_ptr<T>(new T[length]);
+            memcpy(data.get(), other.data.get(), length * sizeof(T));
 		}
-		catch (std::bad_alloc &exception)
+        catch (std::bad_alloc)
 		{
 			throw MemoryError("constructor(vector)");
 		}
@@ -63,7 +63,7 @@ namespace MathVectorSpace
 	{
 		data = other.data;
 		other.length = 0;
-		other.data = nullptr;
+        other.data.reset();
 	}
 
 	template <typename T>
@@ -71,15 +71,15 @@ namespace MathVectorSpace
 	{
 		try
 		{
-			data = new T[length];
+            data = std::shared_ptr<T>(new T[length]);
 			size_t i = 0;
 			for (const auto &el: list)
 			{
-				data[i] = el;
+                data.get()[i] = el;
 				i++;
 			}
 		}
-		catch (std::bad_alloc &exception)
+        catch (std::bad_alloc)
 		{
 			throw MemoryError("constructor(initializer_list)");
 		}
@@ -93,13 +93,13 @@ namespace MathVectorSpace
 		{
 			if (other.length != length)
 			{
-				delete[] data;
+                data.reset();
 				length = other.length;
-				data = new T[length];
+                data = std::shared_ptr<T>(new T[length]);
 			}
 			memcpy(data, other.data, length * sizeof(T));
 		}
-		catch(std::bad_alloc &exception)
+        catch(std::bad_alloc)
 		{
 			throw MemoryError("operator '='");
 		}
@@ -124,14 +124,14 @@ namespace MathVectorSpace
 		{
 			if (length != list.size())
 			{
-				delete [] data;
+                data.reset();
 				length = list.size();
-				data = new T[length];
+                data = std::shared_ptr<T>(new T[length]);
 			}
 			for (size_t i = 0; i < length; i++)
-				data[i] = list[i];
+                this[i] = list[i];
 		}
-		catch (std::bad_alloc &exception)
+        catch (std::bad_alloc)
 		{
 			throw MemoryError("operator '='");
 		}
@@ -141,9 +141,8 @@ namespace MathVectorSpace
 	template <typename T>
 	MathVector<T>::~MathVector()
 	{
-		delete[] data;
+        data.reset();
 		length = 0;
-		data = nullptr;
 	}
 
 	template <typename T>
@@ -151,7 +150,7 @@ namespace MathVectorSpace
 	{
 		if (index < length)
 		{
-			return data[index];
+            return data.get()[index];
 		}
 		else
 		{
@@ -164,7 +163,7 @@ namespace MathVectorSpace
 	{
 		if (index < length)
 		{
-			return data[index];
+            return data.get()[index];
 		}
 		else
 		{
@@ -177,7 +176,7 @@ namespace MathVectorSpace
 	{
 		if (index < length)
 		{
-			return data[index];
+            return data.get()[index];
 		}
 		else
 		{
@@ -190,7 +189,7 @@ namespace MathVectorSpace
 	{
 		if (index < length)
 		{
-			return data[index];
+            return data.get()[index];
 		}
 		else
 		{
@@ -202,7 +201,7 @@ namespace MathVectorSpace
 	template <typename T>
 	void MathVector<T>::clear()
 	{
-		delete [] data;
+        data.reset();
 		length = 0;
 	}
 
@@ -231,7 +230,7 @@ namespace MathVectorSpace
 	{
 		if (other.length != length) throw InvalidSizeError("operator '+='");
 		for (size_t i = 0; i < length; i++)
-			data[i] += other[i];
+            this[i] += other[i];
 		return *this;
 	}
 
@@ -240,7 +239,7 @@ namespace MathVectorSpace
 	{
 		if (other.length != length) throw InvalidSizeError("operator '-='");
 		for (size_t i = 0; i < length; i++)
-			data[i] += other[i];
+            this[i] += other[i];
 		return *this;
 	}
 
@@ -255,7 +254,7 @@ namespace MathVectorSpace
 		else
 		{
 			for (size_t i = 0; i < length; i++)
-				result += data[i] * other[i];
+                result += this[i] * other[i];
 		}
 		return result;
 	}
@@ -271,7 +270,7 @@ namespace MathVectorSpace
 		else
 		{
 			for (size_t i = 0; i < length; i++)
-				result += data[i] * other[i];
+                result += this[i] * other[i];
 		}
 		return result;
 	}
@@ -282,9 +281,9 @@ namespace MathVectorSpace
 		if (length != other.length || length != 3) throw InvalidSizeError("vector_mult function");
 
 		MathVector result(*this);
-		result[0] = data[1] * other[2] - data[2] * other[1];
-		result[1] = data[2] * other[0] - data[0] * other[2];
-		result[2] = data[0] * other[1] - data[1] * other[0];
+        result[0] = this[1] * other[2] - this[2] * other[1];
+        result[1] = this[2] * other[0] - this[0] * other[2];
+        result[2] = this[0] * other[1] - this[1] * other[0];
 
 		return result;
 	}
@@ -295,9 +294,9 @@ namespace MathVectorSpace
 		if (length != other.length || length != 3) throw InvalidSizeError("operator '^'");
 
 		MathVector result(*this);
-		result[0] = data[1] * other[2] - data[2] * other[1];
-		result[1] = data[2] * other[0] - data[0] * other[2];
-		result[2] = data[0] * other[1] - data[1] * other[0];
+        result[0] = this[1] * other[2] - this[2] * other[1];
+        result[1] = this[2] * other[0] - this[0] * other[2];
+        result[2] = this[0] * other[1] - this[1] * other[0];
 
 		return result;
 	}
@@ -324,7 +323,7 @@ namespace MathVectorSpace
 	MathVector<T> &MathVector<T>::operator *= (const T& value)
 	{
 		for (size_t i = 0; i < length; i++)
-			data[i] *= value;
+		    data.get()[i] *= value;
 		return *this;
 	}
 
@@ -332,7 +331,7 @@ namespace MathVectorSpace
 	MathVector<T> &MathVector<T>::operator /= (const T& value)
 	{
 		for (size_t i = 0; i < length; i++)
-			data[i] /= value;
+            data.get()[i] /= value;
 		return *this;
 	}
 
@@ -460,28 +459,28 @@ namespace MathVectorSpace
 	template<typename T>
 	VectorIterator<T> MathVector<T>::begin()
 	{
-		VectorIterator<T> start(data);
+        VectorIterator<T> start(data);
 		return start;
 	}
 
 	template<typename T>
 	VectorIterator<T> MathVector<T>::end()
 	{
-		VectorIterator<T> end(data + this->length);
+        VectorIterator<T> end(std::shared_ptr<T>(data.get() + this->length));
 		return end;
 	}
 
 	template<typename T>
 	ConstVectorIterator<T> MathVector<T>::begin() const
 	{
-		ConstVectorIterator<T> start(data);
+        ConstVectorIterator<T> start(data);
 		return start;
 	}
 
 	template<typename T>
 	ConstVectorIterator<T> MathVector<T>::end() const
 	{
-		ConstVectorIterator<T> end(data + this->length);
+        ConstVectorIterator<T> end(std::shared_ptr<T>(data.get() + this->length));
 		return end;
 	}
 }
