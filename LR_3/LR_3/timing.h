@@ -1,0 +1,10 @@
+#ifndef TIMING_H
+#define TIMING_H
+
+#define FLOORS 8
+#define TIME_BETWEEN_FLOORS 1500
+#define TIME_DOORS_OPENING 1500
+#define TIME_DOORS_WAITING 3000
+enum Direction { UP, DOWN, NO_DIRECTION };
+
+#endif // TIMING_H
