@@ -16,7 +16,5 @@ private:
     std::string _file_name;
     std::string _model_name;
 };
-
 }
-
 #endif // ADD_MODEL_COMMAND_H

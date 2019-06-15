@@ -12,4 +12,4 @@ void AddCameraCommand::execute(std::shared_ptr<mediator::Mediator> intermediary)
     intermediary->addCamera(_name);
 }
 
-} // namespace commands
+}

@@ -47,4 +47,4 @@ void DrawManager::proectPoint(math::Point &p) {
     p.setY(p.y() * distCoef);
 }
 
-} // namespace render
+}

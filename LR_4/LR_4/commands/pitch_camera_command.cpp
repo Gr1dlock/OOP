@@ -11,4 +11,4 @@ void PitchCameraCommand::execute(std::shared_ptr<mediator::Mediator> intermediar
     intermediary->transformCamera(_object_name, moving, _rotation);
 }
 
-} // namespace commands
+}

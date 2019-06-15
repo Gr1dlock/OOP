@@ -10,4 +10,4 @@ void RollCameraCommand::execute(std::shared_ptr<mediator::Mediator> mediator) {
     mediator->transformCamera(_object_name, moving, _rotation);
 }
 
-} // namespace commands
+}

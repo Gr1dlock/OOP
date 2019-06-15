@@ -47,6 +47,6 @@ ssize_t Composite::getIndex(std::shared_ptr<Object> obj)
     return -1;
 }
 
-} // namespace objects
+}
 
 

@@ -37,7 +37,7 @@ void TransformManager::scaleObject(std::shared_ptr<objects::Object> obj, double 
 }
 
 double TransformManager::degreesToRadians(double angle) {
-    return angle / 180. * 3.1415926535;
+    return angle / 180. * M_PI;
 }
 
 }

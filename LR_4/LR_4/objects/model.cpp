@@ -27,4 +27,4 @@ void Model::draw(std::shared_ptr<BaseDrawManager> drawer)
 }
 
 
-} // namespace objects
+}

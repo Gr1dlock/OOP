@@ -9,4 +9,4 @@ void RemoveModelCommand::execute(std::shared_ptr<mediator::Mediator> intermediar
     intermediary->removeModel(_object_name);
 }
 
-} // namespace commands
+}

@@ -9,4 +9,4 @@ void TransformModelCommand::execute(std::shared_ptr<mediator::Mediator> intermed
     intermediary->transformModel(_object_name, _move, _scale, _rotate);
 }
 
-} // namespace commands
+}

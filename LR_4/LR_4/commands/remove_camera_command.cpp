@@ -9,4 +9,4 @@ void RemoveCameraCommand::execute(std::shared_ptr<mediator::Mediator> intermedia
     intermediary->removeCamera(_object_name);
 }
 
-} // namespace commands
+}

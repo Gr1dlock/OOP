@@ -13,4 +13,4 @@ void QtDrawer::drawLine(const math::Point &p1, const math::Point &p2) {
                        w + std::round(p2.x()), h - std::round(p2.y()));
 }
 
-} // namespace render
+}

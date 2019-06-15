@@ -21,4 +21,4 @@ void Matrix::set(size_t i, size_t j, double value)
     _data[i][j] = value;
 }
 
-} // namespace math
+}

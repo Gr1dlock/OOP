@@ -9,4 +9,4 @@ void DrawCommand::execute(std::shared_ptr<mediator::Mediator> intermediary) {
     intermediary->draw(_drawer);
 }
 
-} // namespace commands
+}

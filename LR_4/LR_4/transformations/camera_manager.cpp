@@ -23,7 +23,7 @@ void CameraManager::pitch(std::shared_ptr<objects::Camera> camera, double angle)
 
 double CameraManager::degreesToRadians(double angle)
 {
-    return angle / 180. * 3.1415926535;
+    return angle / 180. * M_PI;
 }
 
-} // namespace transformations
+}
